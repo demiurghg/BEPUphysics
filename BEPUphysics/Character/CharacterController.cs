@@ -518,7 +518,7 @@ namespace BEPUphysics.Character
 
 
                 //Attempt to jump.
-                if (tryToJump && StanceManager.CurrentStance != Stance.Crouching) //Jumping while crouching would be a bit silly.
+                if (TryToJump && StanceManager.CurrentStance != Stance.Crouching) //Jumping while crouching would be a bit silly.
                 {
                     //In the following, note that the jumping velocity changes are computed such that the separating velocity is specifically achieved,
                     //rather than just adding some speed along an arbitrary direction.  This avoids some cases where the character could otherwise increase
@@ -553,7 +553,7 @@ namespace BEPUphysics.Character
                         supportData = new SupportData();
                     }
                 }
-                tryToJump = false;
+                TryToJump = false;
 
 
                 //Try to step!
@@ -799,7 +799,8 @@ namespace BEPUphysics.Character
 
         }
 
-        bool tryToJump;
+        public bool TryToJump;
+
         /// <summary>
         /// Jumps the character off of whatever it's currently standing on.  If it has traction, it will go straight up.
         /// If it doesn't have traction, but is still supported by something, it will jump in the direction of the surface normal.
@@ -808,7 +809,7 @@ namespace BEPUphysics.Character
         {
             //The actual jump velocities are applied next frame.  This ensures that gravity doesn't pre-emptively slow the jump, and uses more
             //up-to-date support data.
-            tryToJump = true;
+            TryToJump = true;
         }
 
         public override void OnAdditionToSpace(Space newSpace)

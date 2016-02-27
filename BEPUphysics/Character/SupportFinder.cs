@@ -519,7 +519,7 @@ namespace BEPUphysics.Character
         /// <summary>
         /// Cleans up the support finder.
         /// </summary>
-        internal void ClearSupportData()
+        public void ClearSupportData()
         {
             HasSupport = false;
             HasTraction = false;
